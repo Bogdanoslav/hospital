@@ -2,7 +2,6 @@ package com.hospital.appointments.controllers;
 
 import com.hospital.appointments.models.Patient;
 import com.hospital.appointments.repo.PatientRepository;
-import javafx.application.Application;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,6 @@ import static org.junit.Assert.assertThat;
         //classes = Application.class
         )
 @AutoConfigureMockMvc
-@TestPropertySource(locations = "application-integrationtest.properties")
 class PatientsControllerIntTest {
 
     @Autowired
