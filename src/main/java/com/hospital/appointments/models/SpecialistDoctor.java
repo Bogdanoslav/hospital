@@ -1,15 +1,13 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import java.util.Set;
 
 @Entity
 @DiscriminatorValue("Specialist")
-public class SpecialistDoctor extends Doctor{
-    @Column(name = "specialty")
+public class SpecialistDoctor extends Doctor {
+    @Column(name = "specialty", nullable = false)
     private String speciality;
 
     public SpecialistDoctor() {
@@ -33,7 +31,7 @@ public class SpecialistDoctor extends Doctor{
         return "SpecialistDoctor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", LastName='" + LastName + '\'' +
+                ", LastName='" + lastName + '\'' +
                 ", appointments=" + appointments +
                 ", workingHours=" + workingHours +
                 ", speciality='" + speciality + '\'' +

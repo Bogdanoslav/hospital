@@ -1,14 +1,13 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.*;
-import java.sql.Ref;
 import java.util.Date;
 
 @Entity(name = "Appointment")
 @Table(name = "appointment")
 public class Appointment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     int id;
 
     @Column(name = "start_time", nullable = false)
@@ -26,11 +25,11 @@ public class Appointment {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "id_doctor",nullable = false)
+    @JoinColumn(name = "id_doctor", nullable = false)
     private Doctor doctor;
 
     @ManyToOne
-    @JoinColumn(name = "id_patient",nullable = false)
+    @JoinColumn(name = "id_patient", nullable = false)
     private Patient patient;
 
     @OneToOne

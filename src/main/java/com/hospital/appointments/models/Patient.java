@@ -1,4 +1,4 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -7,7 +7,7 @@ import java.util.Set;
 @Table(name = "patient")
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "first_name", nullable = false)

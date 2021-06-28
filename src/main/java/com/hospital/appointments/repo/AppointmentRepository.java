@@ -1,7 +1,6 @@
-package org.hospital.repo;
+package com.hospital.appointments.repo;
 
-import org.hospital.models.Appointment;
-import org.hospital.models.Patient;
+import com.hospital.appointments.models.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {

@@ -1,4 +1,4 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -6,7 +6,7 @@ import java.util.Set;
 @Entity
 @DiscriminatorValue("Family")
 public class FamilyDoctor extends Doctor {
-    @Column(name = "district", nullable = false)
+    @Column(name = "district")
     private int district;
 
     @OneToMany(mappedBy = "familyDoctor")
@@ -15,10 +15,9 @@ public class FamilyDoctor extends Doctor {
     public FamilyDoctor() {
     }
 
-    public FamilyDoctor(String firstName, String lastName, int district, Set<Patient> patients) {
+    public FamilyDoctor(String firstName, String lastName, int district) {
         super(firstName, lastName);
         this.district = district;
-        this.patients = patients;
     }
 
     public Set<Patient> getPatients() {
@@ -42,7 +41,7 @@ public class FamilyDoctor extends Doctor {
         return "FamilyDoctor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", LastName='" + LastName + '\'' +
+                ", LastName='" + lastName + '\'' +
                 ", district=" + district +
                 ", patients=" + patients +
                 '}';

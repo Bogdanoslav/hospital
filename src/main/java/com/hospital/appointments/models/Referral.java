@@ -1,15 +1,15 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.*;
 
 @Entity(name = "Referral")
-@Table(name = "referral", uniqueConstraints={
+@Table(name = "referral", uniqueConstraints = {
         @UniqueConstraint(name = "UC_referral", columnNames = "referral_number")
-    }
+}
 )
 public class Referral {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "referral_number", nullable = false)

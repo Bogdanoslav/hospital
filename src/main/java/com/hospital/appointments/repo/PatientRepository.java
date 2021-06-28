@@ -1,6 +1,6 @@
-package org.hospital.repo;
+package com.hospital.appointments.repo;
 
-import org.hospital.models.Patient;
+import com.hospital.appointments.models.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.transaction.Transactional;

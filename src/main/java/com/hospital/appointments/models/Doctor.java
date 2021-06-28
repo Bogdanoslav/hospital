@@ -1,4 +1,4 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,14 +9,14 @@ import java.util.Set;
 @DiscriminatorColumn(name = "doctor_type")
 public abstract class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected int id;
 
     @Column(name = "first_name", nullable = false)
     protected String firstName;
 
     @Column(name = "last_name", nullable = false)
-    protected String LastName;
+    protected String lastName;
 
     @OneToMany(mappedBy = "doctor")
     Set<Appointment> appointments;
@@ -29,7 +29,7 @@ public abstract class Doctor {
 
     public Doctor(String firstName, String lastName) {
         this.firstName = firstName;
-        LastName = lastName;
+        this.lastName = lastName;
     }
 
     public Set<Appointment> getAppointments() {
@@ -57,11 +57,11 @@ public abstract class Doctor {
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        LastName = lastName;
+        lastName = lastName;
     }
 
     @Override
@@ -69,7 +69,7 @@ public abstract class Doctor {
         return "Doctor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", LastName='" + LastName + '\'' +
+                ", LastName='" + lastName + '\'' +
                 '}';
     }
 }

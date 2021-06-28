@@ -1,14 +1,11 @@
-package org.hospital.models;
+package com.hospital.appointments.models;
 
 import javax.persistence.*;
-import javax.print.Doc;
-import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity(name = "WorkingHours")
 @Table(name = "working_hours")
-public class WorkingHours{
+public class WorkingHours {
     @Id
     @GeneratedValue
     int id;
@@ -39,13 +36,12 @@ public class WorkingHours{
     public WorkingHours() {
     }
 
-    public WorkingHours(int day, Date startTime, Date endTime, Date breakStart, Date breakEnd, Doctor doctor) {
+    public WorkingHours(int day, Date startTime, Date endTime, Date breakStart, Date breakEnd) {
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
         this.breakStart = breakStart;
         this.breakEnd = breakEnd;
-        this.doctor = doctor;
     }
 
     public int getDay() {
