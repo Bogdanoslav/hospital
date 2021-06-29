@@ -1,46 +1,48 @@
 package com.hospital.appointments.controllers;
 
-import com.hospital.appointments.exceptions.NoEntityException;
 import com.hospital.appointments.models.Patient;
 import com.hospital.appointments.repo.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
-import java.util.*;
 
 
 @RestController
-@RequestMapping("/patient")
+@RequestMapping("/patients")
 @Component
 public class PatientsController {
     @Autowired
     PatientRepository patientRepository;
 
-    @GetMapping()
-    public List<Patient> index(){
+    @GetMapping("/all")
+    public List<Patient> index() {
         return patientRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Patient show(@PathVariable("id") int id){
+    public Patient showById(@PathVariable("id") int id) {
         Optional<Patient> optionalPatient = patientRepository.findById(id);
-        if(optionalPatient.isPresent()){
+        if (optionalPatient.isPresent()) {
             Patient patient = optionalPatient.get();
             return patient;
-        } else{
+        } else {
             return null;
         }
     }
+    @GetMapping()
+    public Patient showByFirstName(@RequestParam(value="firstName") String firstName) {
+        Patient patient = patientRepository.findByFirstName(firstName);
+        return patient;
+    }
 
     @PostMapping("/create")
-    public Patient create(@ModelAttribute Patient patient){
-        try{
+    public Patient create(@ModelAttribute Patient patient) {
+        try {
             patientRepository.save(patient);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw e;
         }
         return patient;

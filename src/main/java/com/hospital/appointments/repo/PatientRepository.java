@@ -7,5 +7,5 @@ import javax.transaction.Transactional;
 
 @Transactional
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
-
+    public Patient findByFirstName(String firstName);
 }
