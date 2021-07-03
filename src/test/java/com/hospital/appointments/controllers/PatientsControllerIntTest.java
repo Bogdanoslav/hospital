@@ -1,5 +1,6 @@
 package com.hospital.appointments.controllers;
 
+import com.hospital.appointments.initializer.Postgres;
 import com.hospital.appointments.models.Patient;
 import com.hospital.appointments.repo.PatientRepository;
 
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,14 +31,21 @@ import javax.transaction.Transactional;
 @AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:/test.properties")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration(initializers = {Postgres.Initializer.class})
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
+@Transactional
 class PatientsControllerIntTest {
 
     @Autowired
     private MockMvc mvc;
 
     @Autowired
-    PatientRepository patientRepository;
+    private PatientRepository patientRepository;
+
+    @BeforeAll
+    static void init(){
+        Postgres.container.start();
+    }
 
     @BeforeEach
     public void createPatients(){
