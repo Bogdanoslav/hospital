@@ -1,40 +1,40 @@
 package com.hospital.appointments.controllers;
 
-import com.hospital.appointments.initializer.Postgres;
 import com.hospital.appointments.models.Patient;
 import com.hospital.appointments.repo.PatientRepository;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import org.junit.jupiter.api.*;
-
-import static org.hamcrest.Matchers.*;
-
+import com.hospital.appointments.testContainers.MysqlContainer;
+import com.hospital.appointments.testContainers.PostgresContainer;
+import org.junit.ClassRule;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+import org.testcontainers.containers.JdbcDatabaseContainer;
+import org.testcontainers.containers.PostgreSQLContainer;
 
-import javax.transaction.Transactional;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @TestPropertySource(locations = "classpath:/test.properties")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ContextConfiguration(initializers = {Postgres.Initializer.class})
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
-@Transactional
 class PatientsControllerIntTest {
+
+    @ClassRule
+    public static PostgreSQLContainer Container = PostgresContainer.getInstance();
 
     @Autowired
     private MockMvc mvc;
@@ -42,13 +42,8 @@ class PatientsControllerIntTest {
     @Autowired
     private PatientRepository patientRepository;
 
-    @BeforeAll
-    static void init(){
-        Postgres.container.start();
-    }
-
     @BeforeEach
-    public void createPatients(){
+    public void createPatients() {
         Patient patient1 = new Patient("Yakov", "Zdzherbinsky", 33, 14);
         Patient patient2 = new Patient("Van", "Koshik", 33, 14);
         patientRepository.save(patient1);
@@ -72,17 +67,17 @@ class PatientsControllerIntTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content()
-                .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.firstName", is("Yakov")));
     }
 
     @Test
     public void create() throws Exception {
         mvc.perform(MockMvcRequestBuilders.post("/patients/create")
-                .param("firstName","John")
-                .param("lastName","Johnes")
-                .param("age","30")
-                .param("district","14")).
+                .param("firstName", "John")
+                .param("lastName", "Johnes")
+                .param("age", "30")
+                .param("district", "14")).
                 andExpect(status().isOk());
     }
 }
