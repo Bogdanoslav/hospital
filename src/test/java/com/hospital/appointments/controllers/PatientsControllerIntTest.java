@@ -1,10 +1,8 @@
 package com.hospital.appointments.controllers;
 
+import com.hospital.appointments.config.TestConfig;
 import com.hospital.appointments.models.Patient;
 import com.hospital.appointments.repo.PatientRepository;
-import com.hospital.appointments.testContainers.MysqlContainer;
-import com.hospital.appointments.testContainers.PostgresContainer;
-import org.junit.ClassRule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
@@ -28,13 +26,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
-@TestPropertySource(locations = "classpath:/test.properties")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations = "classpath:/application.properties")
+@SpringBootTest(classes = {TestConfig.class})
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class PatientsControllerIntTest {
 
-    @ClassRule
-    public static PostgreSQLContainer Container = PostgresContainer.getInstance();
+    @Autowired
+    public static PostgreSQLContainer Container;
 
     @Autowired
     private MockMvc mvc;
