@@ -1,13 +1,14 @@
 package com.hospital.appointments.controllers;
 
-import com.hospital.appointments.models.Patient;
+import com.hospital.appointments.dto.filter.PatientFilter;
+import com.hospital.appointments.model.Patient;
 import com.hospital.appointments.repo.PatientRepository;
+import com.hospital.appointments.services.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -17,35 +18,23 @@ public class PatientsController {
     @Autowired
     PatientRepository patientRepository;
 
+    @Autowired
+    PatientService patientService;
+
     @GetMapping("/all")
-    public List<Patient> index() {
-        return patientRepository.findAll();
+    public List<Patient> findAllPatients(@ModelAttribute PatientFilter patientFilter) {
+        return patientService.findAll(patientFilter);
     }
 
     @GetMapping("/{id}")
-    public Patient showById(@PathVariable("id") int id) {
-        Optional<Patient> optionalPatient = patientRepository.findById(id);
-        if (optionalPatient.isPresent()) {
-            Patient patient = optionalPatient.get();
-            return patient;
-        } else {
-            return null;
-        }
-    }
-    @GetMapping()
-    public Patient showByFirstName(@RequestParam(value="firstName") String firstName) {
-        Patient patient = patientRepository.findByFirstName(firstName);
-        return patient;
+    public Patient findPatientById(@PathVariable Integer id) {
+        return patientService.findById(id);
     }
 
     @PostMapping("/create")
-    public Patient create(@ModelAttribute Patient patient) {
-        try {
-            patientRepository.save(patient);
-        } catch (Exception e) {
-            throw e;
-        }
-        return patient;
+    public Patient createPatient(@ModelAttribute Patient patient) {
+
+        return patientService.save(patient);
     }
 
 

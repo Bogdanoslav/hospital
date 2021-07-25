@@ -1,4 +1,4 @@
-package com.hospital.appointments.models;
+package com.hospital.appointments.model;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -7,23 +7,23 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("Specialist")
 public class SpecialistDoctor extends Doctor {
-    @Column(name = "specialty", nullable = false)
-    private String speciality;
+    @Column(name = "specialty")
+    private String specialty;
 
     public SpecialistDoctor() {
     }
 
     public SpecialistDoctor(String firstName, String lastName, String speciality) {
         super(firstName, lastName);
-        this.speciality = speciality;
+        this.specialty = speciality;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public String getSpecialty() {
+        return specialty;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setSpecialty(String speciality) {
+        this.specialty = speciality;
     }
 
     @Override
@@ -31,10 +31,10 @@ public class SpecialistDoctor extends Doctor {
         return "SpecialistDoctor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", LastName='" + lastName + '\'' +
-                ", appointments=" + appointments +
-                ", workingHours=" + workingHours +
-                ", speciality='" + speciality + '\'' +
+                ", lastName='" + lastName + '\'' +
+//                ", appointments=" + appointments +
+//                ", workingHours=" + workingHours +
+//                ", speciality='" + specialty + '\'' +
                 '}';
     }
 }

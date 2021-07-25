@@ -1,4 +1,6 @@
-package com.hospital.appointments.models;
+package com.hospital.appointments.model;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -18,10 +20,12 @@ public abstract class Doctor {
     @Column(name = "last_name", nullable = false)
     protected String lastName;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.PERSIST)
+    @JsonManagedReference
     Set<Appointment> appointments;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.PERSIST)
+    @JsonManagedReference
     Set<WorkingHours> workingHours;
 
     public Doctor() {
@@ -69,7 +73,9 @@ public abstract class Doctor {
         return "Doctor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", LastName='" + lastName + '\'' +
+                ", lastName='" + lastName + '\'' +
+//                ", appointments=" + appointments +
+//                ", workingHours=" + workingHours +
                 '}';
     }
 }

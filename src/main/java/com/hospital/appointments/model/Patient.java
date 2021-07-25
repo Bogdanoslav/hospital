@@ -1,4 +1,4 @@
-package com.hospital.appointments.models;
+package com.hospital.appointments.model;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -17,10 +17,10 @@ public class Patient {
     private String lastName;
 
     @Column(name = "age", nullable = false)
-    private int age;
+    private Integer age;
 
     @Column(name = "district", nullable = false)
-    private int district;
+    private Integer district;
 
     @ManyToOne
     @JoinColumn(name = "id_family_doctor")
@@ -37,6 +37,13 @@ public class Patient {
         this.lastName = lastName;
         this.age = age;
         this.district = district;
+    }
+    public Patient(String firstName, String lastName, int age, int district, FamilyDoctor familyDoctor) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.district = district;
+        this.familyDoctor = familyDoctor;
     }
 
     public int getId() {
@@ -87,8 +94,8 @@ public class Patient {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", district=" + district +
-                ", familyDoctor=" + familyDoctor +
-                ", appointments=" + appointments +
+//                ", familyDoctor=" + familyDoctor +
+//                ", appointments=" + appointments +
                 '}';
     }
 }

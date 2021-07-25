@@ -1,4 +1,4 @@
-package com.hospital.appointments.models;
+package com.hospital.appointments.model;
 
 import javax.persistence.*;
 
@@ -55,7 +55,7 @@ public class Referral {
         return "Referral{" +
                 "id=" + id +
                 ", referralNumber=" + referralNumber +
-                ", appointment=" + appointment +
+//                ", appointment=" + appointment +
                 '}';
     }
 }

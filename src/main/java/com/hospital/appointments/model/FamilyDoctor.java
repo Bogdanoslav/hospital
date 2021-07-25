@@ -1,4 +1,6 @@
-package com.hospital.appointments.models;
+package com.hospital.appointments.model;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,7 +11,8 @@ public class FamilyDoctor extends Doctor {
     @Column(name = "district")
     private int district;
 
-    @OneToMany(mappedBy = "familyDoctor")
+    @OneToMany(mappedBy = "familyDoctor", cascade = CascadeType.PERSIST)
+    @JsonManagedReference
     private Set<Patient> patients;
 
     public FamilyDoctor() {
@@ -19,6 +22,11 @@ public class FamilyDoctor extends Doctor {
         super(firstName, lastName);
         this.district = district;
     }
+    public FamilyDoctor(String firstName, String lastName, int district, Set<Patient> patients) {
+        super(firstName, lastName);
+        this.district = district;
+    }
+
 
     public Set<Patient> getPatients() {
         return patients;
@@ -41,8 +49,10 @@ public class FamilyDoctor extends Doctor {
         return "FamilyDoctor{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", LastName='" + lastName + '\'' +
-                ", district=" + district +
+                ", lastName='" + lastName + '\'' +
+//                ", appointments=" + appointments +
+//                ", workingHours=" + workingHours +
+//                ", district=" + district +
                 ", patients=" + patients +
                 '}';
     }

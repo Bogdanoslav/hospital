@@ -1,4 +1,6 @@
-package com.hospital.appointments.models;
+package com.hospital.appointments.model;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,45 +12,42 @@ public class WorkingHours {
     @GeneratedValue
     int id;
 
-    @Column(name = "day", nullable = false)
-    int day;
+    @Column(name = "day", nullable = false, length = 1337)
+    String day;
 
     @Column(name = "start_time", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date startTime;
 
     @Column(name = "end_time", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.TIME)
     private Date endTime;
-
-    @Column(name = "break_start", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date breakStart;
-
-    @Column(name = "break_end", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date breakEnd;
 
     @ManyToOne
     @JoinColumn(name = "id_doctor")
+    @JsonBackReference
     private Doctor doctor;
 
     public WorkingHours() {
     }
 
-    public WorkingHours(int day, Date startTime, Date endTime, Date breakStart, Date breakEnd) {
+    public WorkingHours(String day, Date startTime, Date endTime) {
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.breakStart = breakStart;
-        this.breakEnd = breakEnd;
+    }
+    public WorkingHours(String day, Date startTime, Date endTime, Doctor doctor) {
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.doctor = doctor;
     }
 
-    public int getDay() {
+    public String getDay() {
         return day;
     }
 
-    public void setDay(int day) {
+    public void setDay(String day) {
         this.day = day;
     }
 
@@ -68,22 +67,6 @@ public class WorkingHours {
         this.endTime = endTime;
     }
 
-    public Date getBreakStart() {
-        return breakStart;
-    }
-
-    public void setBreakStart(Date breakStart) {
-        this.breakStart = breakStart;
-    }
-
-    public Date getBreakEnd() {
-        return breakEnd;
-    }
-
-    public void setBreakEnd(Date breakEnd) {
-        this.breakEnd = breakEnd;
-    }
-
     public Doctor getDoctor() {
         return doctor;
     }
@@ -99,9 +82,7 @@ public class WorkingHours {
                 ", day=" + day +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
-                ", breakStart=" + breakStart +
-                ", breakEnd=" + breakEnd +
-                ", doctor=" + doctor +
+//                ", doctor=" + doctor +
                 '}';
     }
 }
