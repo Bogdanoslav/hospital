@@ -6,19 +6,22 @@ import com.zaxxer.hikari.util.DriverDataSource;
 import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.TestPropertySource;
 import org.testcontainers.containers.MySQLContainer;
 
+import javax.servlet.ServletContext;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
+@TestConfiguration
+@PropertySource("application.properties")
 @EnableJpaRepositories("com.hospital.appointments.repo")
-@EntityScan("com.hospital.appointments.model")
-@ComponentScan(basePackages = {"com.hospital.appointments.services","com.hospital.appointments.specification","com.hospital.appointments.controllers"})
-@TestPropertySource("classpath:application.properties")
+@ComponentScan("com.hospital.appointments")
+@Import(SpringConfig.class)
 @EnableAutoConfiguration
 public class TestConfig {
 

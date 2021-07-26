@@ -41,7 +41,7 @@ public class DoctorsControllerTest {
 
     @Test
     @Transactional
-    public void giverFamilyDoctors_WhenGetFamilyDoctorsAll_ThenStatus200() throws Exception {
+    public void givenFamilyDoctors_WhenGetFamilyDoctorsAll_ThenStatus200() throws Exception {
         mockMvc.perform(get("/doctors/family/all")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -52,7 +52,7 @@ public class DoctorsControllerTest {
 
     @Test
     @Transactional
-    public void giverFamilyDoctors_WhenGetFamilyDoctorsById_ThenStatus200() throws Exception {
+    public void givenFamilyDoctors_WhenGetFamilyDoctorsById_ThenStatus200() throws Exception {
         mockMvc.perform(get("/doctors/family/4")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
