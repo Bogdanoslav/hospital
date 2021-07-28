@@ -6,6 +6,7 @@ import com.hospital.appointments.model.FamilyDoctor;
 import com.hospital.appointments.model.Patient;
 import com.hospital.appointments.model.SpecialistDoctor;
 import com.hospital.appointments.model.WorkingHours;
+import com.hospital.appointments.repo.FamilyDoctorRepository;
 import com.hospital.appointments.services.FamilyDoctorService;
 import com.hospital.appointments.services.SpecialistDoctorService;
 import com.hospital.appointments.utils.DbTestUtil;
@@ -35,6 +36,9 @@ public class FamilyDoctorSpecificationsTest {
 
     @Autowired
     private FamilyDoctorService familyDoctorService;
+    @Autowired
+    private FamilyDoctorRepository familyDoctorRepository;
+
 
     @BeforeEach
     public void CreateDoctors() throws SQLException {
@@ -55,9 +59,9 @@ public class FamilyDoctorSpecificationsTest {
         workingHours2.add(new WorkingHours("SUN", new Time(9), new Time(20), familyDoctor2));
         familyDoctor2.setWorkingHours(workingHours2);
         familyDoctor2.setPatients(patients2);
-//
-//        familyDoctorService.save(familyDoctor1);
-//        familyDoctorService.save(familyDoctor2);
+
+        familyDoctorRepository.save(familyDoctor1);
+        familyDoctorRepository.save(familyDoctor2);
     }
 
     @Test

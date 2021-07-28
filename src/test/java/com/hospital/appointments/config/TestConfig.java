@@ -18,11 +18,10 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @TestConfiguration
-@PropertySource("application.properties")
+@TestPropertySource("application.properties")
 @EnableJpaRepositories("com.hospital.appointments.repo")
 @ComponentScan("com.hospital.appointments")
 @Import(SpringConfig.class)
-@EnableAutoConfiguration
 public class TestConfig {
 
     @Bean

@@ -25,14 +25,14 @@ public class AppointmentsController {
         return appointmentService.findAll(appointmentFilter);
     }
 
-    @InitBinder
-    private void dateBinder(WebDataBinder binder) {
-        //The date format to parse or output your dates
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
-        //dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
-        //Create a new CustomDateEditor
-        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
-        //Register it as custom editor for the Date type
-        binder.registerCustomEditor(Date.class, editor);
-    }
+//    @InitBinder
+//    private void dateBinder(WebDataBinder binder) {
+//        //The date format to parse or output your dates
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+//        //dateFormat.setTimeZone(TimeZone.getTimeZone("Europe/Kiev"));
+//        //Create a new CustomDateEditor
+//        CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+//        //Register it as custom editor for the Date type
+//        binder.registerCustomEditor(Date.class, editor);
+//    }
 }

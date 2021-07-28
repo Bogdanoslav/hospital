@@ -12,15 +12,10 @@ import java.util.TimeZone;
 
 @Configuration
 @ComponentScan("com.hospital.appointments")
-@PropertySource("application.properties")
 public class SpringConfig {
     @Bean
     ModelMapper mapper(){
         return new ModelMapper();
-    }
-    @PostConstruct
-    public void setupMapper(){
-
     }
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization() {

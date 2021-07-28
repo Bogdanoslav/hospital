@@ -36,9 +36,6 @@ class PatientsControllerIntTest {
     @Autowired
     private PatientRepository patientRepository;
 
-    @Autowired
-    private ApplicationContext applicationContext;
-
     @Test
     @Transactional
     public void givenPatients_whenGetPatients_thenStatus200() throws Exception {

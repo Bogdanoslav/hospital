@@ -65,7 +65,7 @@ public abstract class Doctor {
     }
 
     public void setLastName(String lastName) {
-        lastName = lastName;
+        this.lastName = lastName;
     }
 
     @Override

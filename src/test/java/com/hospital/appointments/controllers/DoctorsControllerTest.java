@@ -33,9 +33,6 @@ public class DoctorsControllerTest {
     private MySQLContainer mySQLContainer;
 
     @Autowired
-    private ApplicationContext applicationContext;
-
-    @Autowired
     private MockMvc mockMvc;
 
 
