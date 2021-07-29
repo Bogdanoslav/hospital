@@ -16,9 +16,9 @@ public class BySpecialtySpecification<T> implements Specification<T> {
     }
 
     @Override
-    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        if (specialty == null || specialty.isEmpty())
-            return criteriaBuilder.conjunction();
+    public Predicate toPredicate(
+            Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        if (specialty == null || specialty.isEmpty()) return criteriaBuilder.conjunction();
         return criteriaBuilder.equal(root.get(SpecialistDoctor_.SPECIALTY), specialty);
     }
 }

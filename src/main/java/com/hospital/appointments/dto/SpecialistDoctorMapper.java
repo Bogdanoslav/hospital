@@ -1,13 +1,13 @@
 package com.hospital.appointments.dto;
 
-import com.hospital.appointments.dto.save.doctor.SaveFamilyDoctor;
-import com.hospital.appointments.model.FamilyDoctor;
+import com.hospital.appointments.dto.save.doctor.SaveSpecialistDoctor;
+import com.hospital.appointments.model.SpecialistDoctor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class FamilyDoctorMapper {
+public class SpecialistDoctorMapper {
   @Autowired private ModelMapper mapper;
   //    public FamilyDoctor dtoToEntity(SaveFamilyDoctor saveFamilyDoctor){
   //        return mapper.typeMap(SaveFamilyDoctor.class, FamilyDoctor.class)
@@ -16,7 +16,7 @@ public class FamilyDoctorMapper {
   //                .addMapping(SaveFamilyDoctor::getDistrict,
   // FamilyDoctor::setDistrict).map(saveFamilyDoctor);
   //    }
-  public FamilyDoctor dtoToEntity(SaveFamilyDoctor saveFamilyDoctor) {
-    return mapper.map(saveFamilyDoctor, FamilyDoctor.class);
+  public SpecialistDoctor dtoToEntity(SaveSpecialistDoctor saveSpecialistDoctor) {
+    return mapper.map(saveSpecialistDoctor, SpecialistDoctor.class);
   }
 }

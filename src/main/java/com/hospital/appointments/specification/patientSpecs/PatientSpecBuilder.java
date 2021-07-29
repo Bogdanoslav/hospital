@@ -9,20 +9,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class PatientSpecBuilder {
-    private PatientSpecBuilder() {
+  private PatientSpecBuilder() {}
 
-    }
+  public static Specification<Patient> withName(String name) {
+    return new ByNameLikeSpecification<>(name);
+  }
 
-    public static Specification<Patient> withName(String name) {
-        return new ByNameLikeSpecification(name);
-    }
+  public static Specification<Patient> withAge(Integer age) {
+    return new ByAgeSpecification<>(age);
+  }
 
-    public static Specification<Patient> withAge(Integer age) {
-        return new ByAgeSpecification(age);
-    }
-
-    public  static Specification<Patient> buildSpecification(PatientFilter patientFilter) {
-        return withName(patientFilter.getFirstName())
-                .and(withAge(patientFilter.getAge()));
-    }
+  public static Specification<Patient> buildSpecification(PatientFilter patientFilter) {
+    return withName(patientFilter.getFirstName()).and(withAge(patientFilter.getAge()));
+  }
 }

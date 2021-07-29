@@ -1,6 +1,5 @@
 package com.hospital.appointments.specification;
 
-import com.hospital.appointments.model.Doctor;
 import com.hospital.appointments.model.Doctor_;
 import com.hospital.appointments.model.WorkingHours_;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,9 +17,9 @@ public class ByWorkingDaySpecification<T> implements Specification<T> {
     }
 
     @Override
-    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        if (day == null || day.isEmpty())
-            return criteriaBuilder.conjunction();
+    public Predicate toPredicate(
+            Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        if (day == null || day.isEmpty()) return criteriaBuilder.conjunction();
         return criteriaBuilder.equal(root.join(Doctor_.WORKING_HOURS).get(WorkingHours_.DAY), day);
     }
 }

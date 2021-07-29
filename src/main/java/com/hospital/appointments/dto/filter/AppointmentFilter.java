@@ -1,55 +1,54 @@
 package com.hospital.appointments.dto.filter;
 
+import java.util.Date;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-
 public class AppointmentFilter {
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    Date date;
-    String status;
-    Integer doctorId;
-    Integer patientId;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  Date date;
 
-    public AppointmentFilter() {
-    }
+  String status;
+  Integer doctorId;
+  Integer patientId;
 
-    public AppointmentFilter(Date date, String status, Integer doctorId, Integer patientId) {
-        this.date = date;
-        this.status = status;
-        this.doctorId = doctorId;
-        this.patientId = patientId;
-    }
+  public AppointmentFilter() {}
 
-    public Date getDate() {
-        return date;
-    }
+  public AppointmentFilter(Date date, String status, Integer doctorId, Integer patientId) {
+    this.date = date;
+    this.status = status;
+    this.doctorId = doctorId;
+    this.patientId = patientId;
+  }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public String getStatus() {
-        return status;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  public String getStatus() {
+    return status;
+  }
 
-    public Integer getDoctorId() {
-        return doctorId;
-    }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
-    public void setDoctorId(Integer doctorId) {
-        this.doctorId = doctorId;
-    }
+  public Integer getDoctorId() {
+    return doctorId;
+  }
 
-    public Integer getPatientId() {
-        return patientId;
-    }
+  public void setDoctorId(Integer doctorId) {
+    this.doctorId = doctorId;
+  }
 
-    public void setPatientId(Integer patientId) {
-        this.patientId = patientId;
-    }
+  public Integer getPatientId() {
+    return patientId;
+  }
+
+  public void setPatientId(Integer patientId) {
+    this.patientId = patientId;
+  }
 }

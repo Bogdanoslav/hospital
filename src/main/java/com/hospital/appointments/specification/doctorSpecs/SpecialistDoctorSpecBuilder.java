@@ -10,25 +10,24 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SpecialistDoctorSpecBuilder {
-    public SpecialistDoctorSpecBuilder() {
-    }
+  public SpecialistDoctorSpecBuilder() {}
 
-    public static Specification<SpecialistDoctor> withWorkingDays(String day) {
-        return new ByWorkingDaySpecification(day);
-    }
+  public static Specification<SpecialistDoctor> withWorkingDays(String day) {
+    return new ByWorkingDaySpecification<>(day);
+  }
 
-    public static Specification<SpecialistDoctor> withNameLike(String name) {
-        return new ByNameLikeSpecification(name);
-    }
+  public static Specification<SpecialistDoctor> withNameLike(String name) {
+    return new ByNameLikeSpecification<>(name);
+  }
 
-    public static Specification<SpecialistDoctor> withSpecialty(String specialty) {
-        return new BySpecialtySpecification<>(specialty);
-    }
+  public static Specification<SpecialistDoctor> withSpecialty(String specialty) {
+    return new BySpecialtySpecification<>(specialty);
+  }
 
-    public static Specification<SpecialistDoctor> buildSpec(DoctorFilter doctorFilter) {
+  public static Specification<SpecialistDoctor> buildSpec(DoctorFilter doctorFilter) {
 
-        return withWorkingDays(doctorFilter.getDay())
-                .and(withNameLike(doctorFilter.getFirstName()))
-                .and(withSpecialty(doctorFilter.getSpecialty()));
-    }
+    return withWorkingDays(doctorFilter.getDay())
+        .and(withNameLike(doctorFilter.getFirstName()))
+        .and(withSpecialty(doctorFilter.getSpecialty()));
+  }
 }

@@ -1,145 +1,149 @@
 package com.hospital.appointments.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
 import java.util.Date;
+import javax.persistence.*;
 
 @Entity(name = "Appointment")
 @Table(name = "appointment")
 public class Appointment {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  int id;
 
-    @Column(name = "start_time", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startTime;
+  @Column(name = "start_time", nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date startTime;
 
-    @Column(name = "actual_end_time", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endTime;
+  @Column(name = "actual_end_time", nullable = false)
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date endTime;
 
-    @Column(name = "date", nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Date date;
+  @Column(name = "date", nullable = false)
+  @Temporal(TemporalType.DATE)
+  private Date date;
 
+  @Column(name = "status", nullable = false)
+  private String Status;
 
+  @Column(name = "price")
+  private Double price;
 
-    @Column(name = "status", nullable = false)
-    private String Status;
+  @ManyToOne
+  @JoinColumn(name = "id_doctor", nullable = false)
+  @JsonBackReference
+  private Doctor doctor;
 
-    @Column(name = "price")
-    private Double price;
+  @ManyToOne
+  @JoinColumn(name = "id_patient", nullable = false)
+  private Patient patient;
 
-    @ManyToOne
-    @JoinColumn(name = "id_doctor", nullable = false)
-    @JsonBackReference
-    private Doctor doctor;
+  @OneToOne
+  @JoinColumn(name = "id_referral")
+  @JsonBackReference
+  private Referral referral;
 
-    @ManyToOne
-    @JoinColumn(name = "id_patient", nullable = false)
-    private Patient patient;
+  public Appointment() {}
 
-    @OneToOne
-    @JoinColumn(name = "id_referral")
-    @JsonBackReference
-    private Referral referral;
+  public Appointment(Date startTime, Date endTime, String status, Double price) {
+    this.startTime = startTime;
+    this.endTime = endTime;
+    Status = status;
+    this.price = price;
+  }
 
-    public Appointment() {
-    }
+  public int getId() {
+    return id;
+  }
 
-    public Appointment(Date startTime, Date endTime, String status, Double price) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        Status = status;
-        this.price = price;
-    }
+  public void setId(int id) {
+    this.id = id;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public Date getStartTime() {
+    return startTime;
+  }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+  public void setStartTime(Date startTime) {
+    this.startTime = startTime;
+  }
 
-    public Date getStartTime() {
-        return startTime;
-    }
+  public Date getEndTime() {
+    return endTime;
+  }
 
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
+  public void setEndTime(Date endTime) {
+    this.endTime = endTime;
+  }
 
-    public Date getEndTime() {
-        return endTime;
-    }
+  public String getStatus() {
+    return Status;
+  }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+  public void setStatus(String status) {
+    Status = status;
+  }
 
-    public String getStatus() {
-        return Status;
-    }
+  public Double getPrice() {
+    return price;
+  }
 
-    public void setStatus(String status) {
-        Status = status;
-    }
+  public void setPrice(Double price) {
+    this.price = price;
+  }
 
-    public Double getPrice() {
-        return price;
-    }
+  public Doctor getDoctor() {
+    return doctor;
+  }
 
-    public void setPrice(Double price) {
-        this.price = price;
-    }
+  public void setDoctor(Doctor doctor) {
+    this.doctor = doctor;
+  }
 
-    public Doctor getDoctor() {
-        return doctor;
-    }
+  public Patient getPatient() {
+    return patient;
+  }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
-    }
+  public void setPatient(Patient patient) {
+    this.patient = patient;
+  }
 
-    public Patient getPatient() {
-        return patient;
-    }
+  public Referral getReferral() {
+    return referral;
+  }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
+  public void setReferral(Referral referral) {
+    this.referral = referral;
+  }
 
-    public Referral getReferral() {
-        return referral;
-    }
+  public Date getDate() {
+    return date;
+  }
 
-    public void setReferral(Referral referral) {
-        this.referral = referral;
-    }
+  public void setDate(Date date) {
+    this.date = date;
+  }
 
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "id=" + id +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", date=" + date +
-                ", Status='" + Status + '\'' +
-                ", price=" + price +
-//                ", doctor=" + doctor +
-//                ", patient=" + patient +
-//                ", referral=" + referral +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Appointment{"
+        + "id="
+        + id
+        + ", startTime="
+        + startTime
+        + ", endTime="
+        + endTime
+        + ", date="
+        + date
+        + ", Status='"
+        + Status
+        + '\''
+        + ", price="
+        + price
+        +
+        //                ", doctor=" + doctor +
+        //                ", patient=" + patient +
+        //                ", referral=" + referral +
+        '}';
+  }
 }

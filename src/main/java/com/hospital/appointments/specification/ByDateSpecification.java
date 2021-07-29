@@ -1,8 +1,6 @@
 package com.hospital.appointments.specification;
 
-import com.hospital.appointments.model.Appointment;
 import com.hospital.appointments.model.Appointment_;
-import liquibase.pro.packaged.T;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -19,9 +17,9 @@ public class ByDateSpecification<T> implements Specification<T> {
     }
 
     @Override
-    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        if (date == null)
-            return criteriaBuilder.conjunction();
+    public Predicate toPredicate(
+            Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        if (date == null) return criteriaBuilder.conjunction();
         return criteriaBuilder.equal(root.<Date>get(Appointment_.DATE), date);
     }
 }

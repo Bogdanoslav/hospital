@@ -14,19 +14,18 @@ public class FamilyDoctorSpecBuilder {
     }
 
     public static Specification<FamilyDoctor> withWorkingDays(String day) {
-        return new ByWorkingDaySpecification(day);
+        return new ByWorkingDaySpecification<>(day);
     }
 
     public static Specification<FamilyDoctor> withNameLike(String name) {
-        return new ByNameLikeSpecification(name);
+        return new ByNameLikeSpecification<>(name);
     }
 
     public static Specification<FamilyDoctor> withPatientsId(Integer id) {
-        return new ByPatientsIdSpecification(id);
+        return new ByPatientsIdSpecification<>(id);
     }
 
     public static Specification<FamilyDoctor> buildSpec(DoctorFilter doctorFilter) {
-
         return withWorkingDays(doctorFilter.getDay())
                 .and(withNameLike(doctorFilter.getFirstName()))
                 .and(withPatientsId(doctorFilter.getPatientId()));

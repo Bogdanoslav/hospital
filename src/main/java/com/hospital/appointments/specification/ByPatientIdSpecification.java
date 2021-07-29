@@ -1,9 +1,6 @@
 package com.hospital.appointments.specification;
 
-import com.hospital.appointments.model.Appointment;
-import com.hospital.appointments.model.Appointment_;
 import com.hospital.appointments.model.Patient_;
-import liquibase.pro.packaged.T;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -19,9 +16,9 @@ public class ByPatientIdSpecification<T> implements Specification<T> {
     }
 
     @Override
-    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
-        if (id == null)
-            return criteriaBuilder.conjunction();
+    public Predicate toPredicate(
+            Root<T> root, CriteriaQuery<?> criteriaQuery, CriteriaBuilder criteriaBuilder) {
+        if (id == null) return criteriaBuilder.conjunction();
         return criteriaBuilder.equal(root.get("patient").get(Patient_.ID), id);
     }
 }
