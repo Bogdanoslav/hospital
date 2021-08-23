@@ -20,6 +20,7 @@ public class GeneralEndpoint {
 
     MetricsEndpoint metricsEndpoint;
 
+    @Autowired
     public GeneralEndpoint(MetricsEndpoint metricsEndpoint){
         this.metricsEndpoint = metricsEndpoint;
     }
