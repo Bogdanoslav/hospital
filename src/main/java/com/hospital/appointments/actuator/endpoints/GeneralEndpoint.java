@@ -18,8 +18,11 @@ public class GeneralEndpoint {
     private final String VERSION = "1.0.0";
     private Boolean test = false;
 
-    @Autowired
     MetricsEndpoint metricsEndpoint;
+
+    public GeneralEndpoint(MetricsEndpoint metricsEndpoint){
+        this.metricsEndpoint = metricsEndpoint;
+    }
 
     Map<String, String> output = new ConcurrentHashMap<>();
 
