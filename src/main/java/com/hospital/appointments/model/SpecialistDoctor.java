@@ -1,45 +1,31 @@
 package com.hospital.appointments.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @DiscriminatorValue("Specialist")
 public class SpecialistDoctor extends Doctor {
-  @Column(name = "specialty")
-  private String specialty;
+    @Column(name = "specialty")
+    @NotNull(message = "Speciality cannot be null")
+    private String specialty;
 
-  public SpecialistDoctor() {}
-
-  public SpecialistDoctor(String firstName, String lastName, String speciality) {
-    super(firstName, lastName);
-    this.specialty = speciality;
-  }
-
-  public String getSpecialty() {
-    return specialty;
-  }
-
-  public void setSpecialty(String speciality) {
-    this.specialty = speciality;
-  }
-
-  @Override
-  public String toString() {
-    return "SpecialistDoctor{"
-        + "id="
-        + id
-        + ", firstName='"
-        + firstName
-        + '\''
-        + ", lastName='"
-        + lastName
-        + '\''
-        +
-        //                ", appointments=" + appointments +
-        //                ", workingHours=" + workingHours +
-        //                ", speciality='" + specialty + '\'' +
-        '}';
-  }
+    @Override
+    public String toString() {
+        return "SpecialistDoctor{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", specialty='" + specialty + '\'' +
+                '}';
+    }
 }

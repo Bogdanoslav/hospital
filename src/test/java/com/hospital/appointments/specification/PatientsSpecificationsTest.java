@@ -5,7 +5,7 @@ import com.hospital.appointments.dto.filter.PatientFilter;
 import com.hospital.appointments.model.Patient;
 import com.hospital.appointments.repo.PatientRepository;
 import com.hospital.appointments.services.PatientService;
-import com.hospital.appointments.utils.DbTestUtil;
+import com.hospital.appointments.utils.ColumnIncrementResetter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class PatientsSpecificationsTest {
 
   @BeforeEach
   public void createPatients() throws SQLException {
-    DbTestUtil.resetAutoIncrementColumns(applicationContext, "patient");
+    ColumnIncrementResetter.resetAutoIncrementColumns(applicationContext, "patient");
     patient1 = new Patient("Yakov", "Zdzherbinsky", 34, 14);
     patient2 = new Patient("Van", "Koshik", 33, 14);
     patientRepository.save(patient1);

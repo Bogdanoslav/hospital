@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.sql.DataSource;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 
-public class DbTestUtil {
-  private DbTestUtil() {}
+public class ColumnIncrementResetter {
+  private ColumnIncrementResetter() {}
 
   public static void resetAutoIncrementColumns(
       ApplicationContext applicationContext, String... tableNames) throws SQLException {

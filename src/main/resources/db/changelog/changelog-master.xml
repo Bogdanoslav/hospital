@@ -5,18 +5,6 @@
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
 
-    <include file="liquibase-outputChangeLog.xml" relativeToChangelogFile="true"/>
-    <include file="changes/01-create-medical-card-table.xml" relativeToChangelogFile="true"/>
-    <include file="changes/02-create-medical-card-record-table.xml" relativeToChangelogFile="true"/>
-    <include file="changes/03-add_FK_medical_card_and_medical_card_record.xml" relativeToChangelogFile="true"/>
-    <include file="changes/04-drop_not_null_doctor_speciality.xml" relativeToChangelogFile="true"/>
-    <include file="changes/05-change_working_hours_day_data_type.xml" relativeToChangelogFile="true"/>
-    <include file="changes/06-change_working_hours_time_data_type.xml" relativeToChangelogFile="true"/>
-    <include file="changes/07-add_not_null_remove_columns_working_hours.xml" relativeToChangelogFile="true"/>
-    <include file="changes/08-change_appointment_end_start_time_columns.xml" relativeToChangelogFile="true"/>
-    <include file="changes/09-doctor_rename_column.xml" relativeToChangelogFile="true"/>
-    <include file="changes/10-referral_rename_column.xml" relativeToChangelogFile="true"/>
-    <include file="changes/11-add_primary_key_to_working_hours.xml" relativeToChangelogFile="true"/>
-    <include file="changes/12_make_doctor_district_nullable.xml" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>

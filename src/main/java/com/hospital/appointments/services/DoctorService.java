@@ -11,7 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DoctorService {
-  @Autowired DoctorRepository doctorRepository;
+  DoctorRepository doctorRepository;
+
+  @Autowired
+  public DoctorService(DoctorRepository doctorRepository) {
+    this.doctorRepository = doctorRepository;
+  }
 
   public List<Doctor> findAll(DoctorFilter doctorFilter) {
     Specification<Doctor> specification = DoctorSpecBuilder.buildSpec(doctorFilter);

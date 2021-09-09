@@ -1,54 +1,24 @@
 package com.hospital.appointments.dto.filter;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Date;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class AppointmentFilter {
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-  Date date;
+  private Timestamp date;
+  private String status;
+  private Integer doctorId;
+  private Integer patientId;
 
-  String status;
-  Integer doctorId;
-  Integer patientId;
-
-  public AppointmentFilter() {}
-
-  public AppointmentFilter(Date date, String status, Integer doctorId, Integer patientId) {
-    this.date = date;
-    this.status = status;
-    this.doctorId = doctorId;
-    this.patientId = patientId;
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-  public Integer getDoctorId() {
-    return doctorId;
-  }
-
-  public void setDoctorId(Integer doctorId) {
-    this.doctorId = doctorId;
-  }
-
-  public Integer getPatientId() {
-    return patientId;
-  }
-
-  public void setPatientId(Integer patientId) {
-    this.patientId = patientId;
+  public void setDate(String date) {
+    this.date = new Timestamp(Long.valueOf(date));
   }
 }

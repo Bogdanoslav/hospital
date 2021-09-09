@@ -6,7 +6,7 @@ import com.hospital.appointments.model.SpecialistDoctor;
 import com.hospital.appointments.model.WorkingHours;
 import com.hospital.appointments.repo.SpecialistDoctorRepository;
 import com.hospital.appointments.services.SpecialistDoctorService;
-import com.hospital.appointments.utils.DbTestUtil;
+import com.hospital.appointments.utils.ColumnIncrementResetter;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.*;
@@ -34,7 +34,7 @@ public class SpecialistDoctorsSpecificationsTest {
 
   @BeforeEach
   public void CreateDoctors() throws SQLException {
-    DbTestUtil.resetAutoIncrementColumns(applicationContext, "doctor", "working_hours");
+    ColumnIncrementResetter.resetAutoIncrementColumns(applicationContext, "doctor", "working_hours");
     specialistDoctor1 = new SpecialistDoctor("Ivan", "Bikov", "surgeon");
     specialistDoctor2 = new SpecialistDoctor("Anna", "Turova", "cardiologist");
     Set<WorkingHours> workingHours1 = new HashSet<>();

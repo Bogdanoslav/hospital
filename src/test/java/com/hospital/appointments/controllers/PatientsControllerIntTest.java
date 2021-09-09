@@ -27,7 +27,6 @@ import org.testcontainers.containers.MySQLContainer;
 class PatientsControllerIntTest {
 
   @Autowired private MySQLContainer Container;
-
   @Autowired private MockMvc mvc;
 
   @Test
